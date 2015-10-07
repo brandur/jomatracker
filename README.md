@@ -17,8 +17,9 @@ bin/scrape
 
 ``` sh
 heroku create jomatracker
-heroku addons:add mailgun
-heroku addons:add postgresql
+heroku addons:create mailgun
+heroku addons:create postgresql
+heroku addons:create scheduler
 git push heroku master
 heroku config:set NOTIFY_EMAIL=... WATCH_URL=...
 heroku run 'psql $DATABASE_URL < db/stucture.sql'
