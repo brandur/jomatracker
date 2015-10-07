@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "sequel"
+require_relative "../lib/jomatracker"
+
+database_url    = ENV["DATABASE_URL"]    || abort("need DATABASE_URL")
+mailgun_api_key = ENV["MAILGUN_API_KEY"] || abort("need MAILGUN_API_KEY")
+mailgun_domain  = ENV["MAILGUN_DOMAIN"]  || abort("need MAILGUN_DOMAIN")
+notify_email    = ENV["NOTIFY_EMAIL"]    || abort("need NOTIFY_EMAIL")
+watch_url       = ENV["WATCH_URL"]       || abort("need WATCH_URL")
+
+DB = Sequel.connect(database_url)
+
+Jomatracker::Scraper.new(
+  mailgun_api_key: mailgun_api_key,
+  mailgun_domain:  mailgun_domain,
+  notify_email:    notify_email,
+  watch_url:       watch_url,
+).run
