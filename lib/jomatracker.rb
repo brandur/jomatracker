@@ -32,7 +32,7 @@ module Jomatracker
 
       insert_price(price)
 
-      if !last_price || price <= last_price
+      if !last_price || price < last_price
         notify(price, last_price)
       end
     end
