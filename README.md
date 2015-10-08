@@ -22,7 +22,8 @@ heroku addons:create postgresql
 heroku addons:create scheduler
 git push heroku master
 heroku config:set NOTIFY_EMAIL=... WATCH_URL=...
-heroku run 'psql $DATABASE_URL < db/stucture.sql'
+heroku run 'psql $DATABASE_URL < db/structure.sql'
 heroku run bundle exec bin/scrape
 heroku addons:open scheduler
+# add `bundle exec bin/scrape`
 ```
